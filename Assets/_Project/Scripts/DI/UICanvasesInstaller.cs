@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Project.Scripts.UI;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Scripts.DI
@@ -14,6 +15,8 @@ namespace _Project.Scripts.DI
             Container.Bind<GameObject>().WithId("MainMenuCanvas").FromInstance(mainMenuCanvas);
             Container.Bind<GameObject>().WithId("ServerCanvas").FromInstance(serverCanvas);
             Container.Bind<GameObject>().WithId("ClientCanvas").FromInstance(clientCanvas);
+            
+            Container.Bind<ClientUIController>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

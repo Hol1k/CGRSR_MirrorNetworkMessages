@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using _Project.Scripts.UI;
 using Mirror;
 using UnityEngine;
+using Zenject;
 
 namespace _Project.Scripts.Network
 {
     public class NetworkSubscriptionService : IServerNetworkSubscriptionService, IClientNetworkSubscriptionService
     {
+        [Inject] private ClientUIController _clientUIController;
         private Dictionary<NetworkConnectionToClient, HashSet<NetworkMessageType>> _connectionsSubscriptions;
         
         public void RegisterHost()
@@ -14,6 +17,11 @@ namespace _Project.Scripts.Network
             NetworkServer.RegisterHandler<SubscribeMessage>(OnSubscribe);
             NetworkServer.RegisterHandler<UnsubscribeMessage>(OnUnsubscribe);
             NetworkServer.RegisterHandler<DisconnectMessage>(OnDisconnect);
+
+            NetworkServer.OnDisconnectedEvent += conn =>
+            {
+                OnDisconnect(conn, new DisconnectMessage());
+            };
         }
 
         private void OnSubscribe(NetworkConnectionToClient conn, SubscribeMessage msg)
@@ -57,7 +65,7 @@ namespace _Project.Scripts.Network
 
         private void OnHello(HelloMessage msg)
         {
-            Debug.Log($"Server received HelloMessage: {msg}");
+            _clientUIController.AddMessageToUI(msg.Message);
         }
 
         public void Subscribe(NetworkMessageType type)

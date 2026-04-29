@@ -312,11 +312,11 @@ MonoBehaviour:
   m_Content: {fileID: 1662936978}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 15
   m_Viewport: {fileID: 567226767}
   m_HorizontalScrollbar: {fileID: 1113727363}
   m_VerticalScrollbar: {fileID: 973306849}
@@ -1194,7 +1194,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 123
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &701720877
@@ -3081,6 +3081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55329bbd28c84520b31a064be08912b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageUIPrefab: {fileID: 3710567167613584511, guid: 653c9fbb4aa022648bb6a936d8df8b69, type: 3}
+  messagesContainer: {fileID: 1662936978}
 --- !u!1 &1480268057
 GameObject:
   m_ObjectHideFlags: 0
