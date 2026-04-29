@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Network;
+﻿using System;
+using _Project.Scripts.Network;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +12,16 @@ namespace _Project.Scripts.UI
         public void OnSubscribeButton()
         {
             _networkSubscriptionService.Subscribe(NetworkMessageType.HelloMessage);
+        }
+
+        public void OnUnsubscribeButton()
+        {
+            _networkSubscriptionService.Unsubscribe(NetworkMessageType.HelloMessage);
+        }
+
+        private void OnDestroy()
+        {
+           _networkSubscriptionService.Disconnect();
         }
     }
 }
